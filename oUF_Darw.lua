@@ -7,12 +7,6 @@
 
 local minimalist = [=[Interface\AddOns\oUF_Darw\media\minimalist]=]
 
-local colors = setmetatable({
-	power = setmetatable({
-		MANA = {0, 144/255, 1}
-	}, {__index = oUF.colors.power})
-}, {__index = oUF.colors})
-
 local function shortVal(value)
 	if(value <= -1e3) then
 		return ('%.1fk'):format(value / 1e3):gsub('%.?0+([km])$', '%1')
@@ -45,8 +39,6 @@ oUF.Tags['[darwstatus]'] = function(unit)
 end
 
 local function style(self, unit)
-	self.colors = colors
-
 	self:RegisterForClicks('AnyUp')
 	self:SetScript('OnEnter', UnitFrame_OnEnter)
 	self:SetScript('OnLeave', UnitFrame_OnLeave)
@@ -103,7 +95,7 @@ group:SetManyAttributes(
 	'groupBy', 'GROUP',
 	'maxColumns', 2,
 	'unitsPerColumn', 5,
-	'columnSpacing', 81, --fix this one
+	'columnSpacing', 81,
 	'columnAnchorPoint', 'TOP'
 )
 group:Show()
