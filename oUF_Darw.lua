@@ -5,6 +5,9 @@
 
 --]]
 
+local gsub = string.gsub
+local format = string.format
+
 local minimalist = [=[Interface\AddOns\oUF_Darw\media\minimalist]=]
 
 local function shortVal(value)
