@@ -86,7 +86,7 @@ end
 oUF:RegisterStyle('Darw', style)
 oUF:SetActiveStyle('Darw')
 
-local group = oUF:Spawn('header', 'oUF_Darw', nil, '')
+local group = oUF:Spawn('header', 'oUF_Darw')
 group:SetPoint('TOP', Minimap, 'BOTTOM', 0, -15)
 group:SetManyAttributes(
 	'showPlayer', true,
