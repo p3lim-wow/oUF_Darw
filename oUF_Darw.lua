@@ -86,6 +86,10 @@ local function style(self, unit)
 
 	self.DebuffHighlightBackdrop = true
 	self.DebuffHighlightFilter = true
+
+	self.Range = true
+	self.inRangeAlpha = 1
+	self.outsideRangeAlpha = 0.25
 end
 
 oUF:RegisterStyle('Darw', style)
