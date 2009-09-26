@@ -23,19 +23,16 @@ oUF.Tags['[darwwild]'] = function(unit)
 	return not oUF.Tags['[status]'](unit) and not UnitAura(unit, 'Gift of the Wild') and not UnitAura(unit, 'Mark of the Wild') and '|cffff33ffM|r'
 end
 
-oUF.TagEvents['[darwhp]'] = oUF.TagEvents['[curhp]']
 oUF.Tags['[darwhp]'] = function(unit)
 	local perc = oUF.Tags['[perhp]'](unit)
 	return not oUF.Tags['[status]'](unit) and perc and perc < 75 and format('|cffff8080%d%%|r', perc)
 end
 
-oUF.TagEvents['[darwmp]'] = oUF.TagEvents['[curpp]']
 oUF.Tags['[darwmp]'] = function(unit)
 	local perc = oUF.Tags['[perpp]'](unit)
 	return UnitHasMana(unit) and not oUF.Tags['[status]'](unit) and perc and perc < 50 and format('|cff0090ff%d%%|r', perc)
 end
 
-oUF.TagEvents['[darwstatus]'] = 'UNIT_HEALTH'
 oUF.Tags['[darwstatus]'] = function(unit)
 	return UnitIsDead(unit) and 'Dead' or UnitIsGhost(unit) and 'Ghost' or not UnitIsConnected(unit) and 'Offline'
 end
@@ -71,6 +68,7 @@ local function style(self, unit)
 	local status = self.Health:CreateFontString(nil, 'ARTWORK', 'pfont')
 	status:SetPoint('RIGHT', -2, 0)
 	status:SetJustifyH('RIGHT')
+	status.frequentUpdates = true
 	self:Tag(status, '[darwmp][( )darwinfo]')
 
 	local name = self.Health:CreateFontString(nil, 'ARTWORK', 'pfont')
