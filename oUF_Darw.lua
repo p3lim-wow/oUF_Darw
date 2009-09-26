@@ -12,7 +12,7 @@ local minimalist = [=[Interface\AddOns\oUF_Darw\media\minimalist]=]
 
 oUF.TagEvents['[darwwild]'] = 'UNIT_AURA'
 oUF.Tags['[darwwild]'] = function(unit)
-	return not oUF.Tags['[darwstatus]'](unit) and not UnitAura(unit, 'Gift of the Wild') and not UnitAura(unit, 'Mark of the Wild') and '|cffff33ffM|r'
+	return not oUF.Tags['[darwstatus]'](unit) and not UnitHasVehicleUI(unit) and not UnitAura(unit, 'Gift of the Wild') and not UnitAura(unit, 'Mark of the Wild') and '|cffff33ffM|r'
 end
 
 oUF.Tags['[darwhp]'] = function(unit)
