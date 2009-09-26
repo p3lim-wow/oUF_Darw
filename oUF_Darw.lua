@@ -12,17 +12,17 @@ local minimalist = [=[Interface\AddOns\oUF_Darw\media\minimalist]=]
 
 oUF.TagEvents['[darwwild]'] = 'UNIT_AURA'
 oUF.Tags['[darwwild]'] = function(unit)
-	return not oUF.Tags['[status]'](unit) and not UnitAura(unit, 'Gift of the Wild') and not UnitAura(unit, 'Mark of the Wild') and '|cffff33ffM|r'
+	return not oUF.Tags['[darwstatus]'](unit) and not UnitAura(unit, 'Gift of the Wild') and not UnitAura(unit, 'Mark of the Wild') and '|cffff33ffM|r'
 end
 
 oUF.Tags['[darwhp]'] = function(unit)
 	local perc = oUF.Tags['[perhp]'](unit)
-	return not oUF.Tags['[status]'](unit) and perc and perc < 75 and format('|cffff8080%d%%|r', perc)
+	return not oUF.Tags['[darwstatus]'](unit) and perc and perc < 75 and format('|cffff8080%d%%|r', perc)
 end
 
 oUF.Tags['[darwmp]'] = function(unit)
 	local perc = oUF.Tags['[perpp]'](unit)
-	return UnitHasMana(unit) and not oUF.Tags['[status]'](unit) and perc and perc < 50 and format('|cff0090ff%d%%|r', perc)
+	return UnitHasMana(unit) and not oUF.Tags['[darwstatus]'](unit) and perc and perc < 50 and format('|cff0090ff%d%%|r', perc)
 end
 
 oUF.Tags['[darwstatus]'] = function(unit)
