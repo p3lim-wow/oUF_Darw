@@ -10,14 +10,6 @@ local format = string.format
 
 local minimalist = [=[Interface\AddOns\oUF_Darw\media\minimalist]=]
 
-local function shortVal(value)
-	if(value <= -1e3) then
-		return ('%.1fk'):format(value / 1e3):gsub('%.?0+([km])$', '%1')
-	else
-		return value
-	end
-end
-
 oUF.TagEvents['[darwwild]'] = 'UNIT_AURA'
 oUF.Tags['[darwwild]'] = function(unit)
 	return not oUF.Tags['[status]'](unit) and not UnitAura(unit, 'Gift of the Wild') and not UnitAura(unit, 'Mark of the Wild') and '|cffff33ffM|r'
