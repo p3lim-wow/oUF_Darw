@@ -93,9 +93,9 @@ group:SetManyAttributes(
 	'showRaid', true,
 	'yOffset', -5,
 	'point', 'TOP',
-	'groupingOrder', '1,2',
+	'groupingOrder', '1,2,3,4,5',
 	'groupBy', 'GROUP',
-	'maxColumns', 2,
+	'maxColumns', 5,
 	'unitsPerColumn', 5,
 	'columnSpacing', 81,
 	'columnAnchorPoint', 'TOP'
