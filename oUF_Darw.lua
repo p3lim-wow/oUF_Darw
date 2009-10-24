@@ -24,6 +24,10 @@ oUF.Tags['[darwmp]'] = function(unit)
 	return UnitHasMana(unit) and not oUF.Tags['[darwstatus]'](unit) and perc and perc < 50 and format('|cff0090ff%d%%|r', perc)
 end
 
+oUF.Tags['[darwleader]'] = function(unit)
+	return UnitIsPartyLeader(unit) and '|cffffff00!|r'
+end
+
 oUF.Tags['[darwstatus]'] = function(unit)
 	return UnitIsDead(unit) and 'Dead' or UnitIsGhost(unit) and 'Ghost' or not UnitIsConnected(unit) and 'Offline'
 end
@@ -67,7 +71,7 @@ local function style(self, unit)
 	name:SetPoint('RIGHT', status, 'LEFT', -2, 0)
 	name:SetJustifyH('LEFT')
 	name.frequentUpdates = true
-	self:Tag(name, '[raidcolor][name]|r[( )darwwild]')
+	self:Tag(name, '[darwleader][raidcolor][name]|r[( )darwwild]')
 
 	self.ReadyCheck = self:CreateTexture(nil, 'OVERLAY')
 	self.ReadyCheck:SetPoint('RIGHT', self, 'LEFT', -2, 0)
