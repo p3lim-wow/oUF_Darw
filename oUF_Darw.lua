@@ -8,8 +8,6 @@
 local gsub = string.gsub
 local format = string.format
 
-local minimalist = [=[Interface\AddOns\oUF_Darw\media\minimalist]=]
-
 oUF.Tags['[darwwild]'] = function(unit)
 	return not oUF.Tags['[darwstatus]'](unit) and not UnitHasVehicleUI(unit) and not UnitAura(unit, 'Gift of the Wild') and not UnitAura(unit, 'Mark of the Wild') and '|cffff33ffM|r'
 end
@@ -50,11 +48,9 @@ local function style(self, unit)
 	self:SetBackdropColor(0, 0, 0)
 
 	self.Health = CreateFrame('StatusBar', nil, self)
-	self.Health:SetPoint('TOPRIGHT')
-	self.Health:SetPoint('TOPLEFT')
-	self.Health:SetStatusBarTexture(minimalist)
+	self.Health:SetAllPoints(self)
+	self.Health:SetStatusBarTexture([=[Interface\AddOns\oUF_Darw\media\minimalist]=])
 	self.Health:SetStatusBarColor(0.25, 0.25, 0.25)
-	self.Health:SetHeight(14)
 
 	self.Health.bg = self.Health:CreateTexture(nil, 'BACKGROUND')
 	self.Health.bg:SetAllPoints(self.Health)
