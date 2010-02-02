@@ -6,4 +6,4 @@
 ## RequiredDeps: oUF
 ## OptionalDeps: oUF_ReadyCheck, oUF_DebuffHighlight
 
-oUF_Darw.xml
+oUF_Darw.lua
