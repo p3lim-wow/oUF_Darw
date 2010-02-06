@@ -43,7 +43,7 @@ end
 
 oUF.Tags['[darwname]'] = function(unit, realUnit)
 	local _, class = UnitClass(realUnit or unit)
-	local colors = oUF.colors.class[class]
+	local colors = oUF.colors.class[class or 'WARRIOR']
 	return string.format('|cff%02x%02x%02x%s|r%s', colors[1] * 255, colors[2] * 255, colors[3] * 255, UnitName(realUnit or unit), realUnit and '*' or '')
 end
 
