@@ -14,37 +14,36 @@ local BACKDROP = {
 	insets = {top = -1, bottom = -1, left = -1, right = -1}
 }
 
-oUF.Tags['[darwwild]'] = function(unit)
-	return not oUF.Tags['[darwstatus]'](unit) and not UnitHasVehicleUI(unit) and not UnitAura(unit, 'Gift of the Wild') and not UnitAura(unit, 'Mark of the Wild') and '|cffff33ffM|r'
+oUF.Tags['darw:wild'] = function(unit)
+	return not _TAGS['darw:status'](unit) and not UnitHasVehicleUI(unit) and not UnitAura(unit, 'Gift of the Wild') and not UnitAura(unit, 'Mark of the Wild') and '|cffff33ffM|r'
 end
 
-oUF.Tags['[darwhp]'] = function(unit)
-	local perc = oUF.Tags['[perhp]'](unit)
-	return not oUF.Tags['[darwstatus]'](unit) and perc and perc < 75 and format('|cffff8080%d%%|r', perc)
+oUF.Tags['darw:health'] = function(unit)
+	local perc = _TAGS['perhp'](unit)
+	return not _TAGS['darw:status'](unit) and perc and perc < 75 and format('|cffff8080%d%%|r', perc)
 end
 
-oUF.Tags['[darwmp]'] = function(unit)
-	local perc = oUF.Tags['[perpp]'](unit)
-	return UnitHasMana(unit) and not oUF.Tags['[darwstatus]'](unit) and perc and perc < 50 and format('|cff0090ff%d%%|r', perc)
+oUF.Tags['darw:power'] = function(unit)
+	local perc = _TAGS['perpp'](unit)
+	return UnitHasMana(unit) and not _TAGS['darw:status'](unit) and perc and perc < 50 and format('|cff0090ff%d%%|r', perc)
 end
 
-oUF.Tags['[darwleader]'] = function(unit)
+oUF.Tags['darw:leader'] = function(unit)
 	return UnitIsPartyLeader(unit) and '|cffffff00!|r'
 end
 
-oUF.Tags['[darwstatus]'] = function(unit)
+oUF.Tags['darw:status'] = function(unit)
 	return UnitIsDead(unit) and 'Dead' or UnitIsGhost(unit) and 'Ghost' or not UnitIsConnected(unit) and 'Offline'
 end
 
-oUF.Tags['[darwinfo]'] = function(unit)
-	local status = oUF.Tags['[darwstatus]'](unit)
-	return status and format('|cff707070%s|r', status) or oUF.Tags['[darwhp]'](unit)
+oUF.Tags['darw:info'] = function(unit)
+	local status = _TAGS['darw:status'](unit)
+	return status and format('|cff707070%s|r', status) or _TAGS['darw:health'](unit)
 end
 
-oUF.Tags['[darwname]'] = function(unit, realUnit)
+oUF.Tags['darw:name'] = function(unit, realUnit)
 	local _, class = UnitClass(realUnit or unit)
-	local colors = oUF.colors.class[class or 'WARRIOR']
-	return string.format('|cff%02x%02x%02x%s|r%s', colors[1] * 255, colors[2] * 255, colors[3] * 255, UnitName(realUnit or unit), realUnit and '*' or '')
+	return string.format('%s%s|r', Hex(_COLORS.class[class or 'WARRIOR']), UnitName(realUnit or unit))
 end
 
 local function Style(self, unit)
@@ -75,7 +74,7 @@ local function Style(self, unit)
 	status:SetFont(FONT, 8, 'OUTLINE')
 	status:SetJustifyH('RIGHT')
 	status.frequentUpdates = true
-	self:Tag(status, '[darwmp][( )darwinfo]')
+	self:Tag(status, '[darw:power][ >darw:info]')
 
 	local name = health:CreateFontString(nil, 'ARTWORK')
 	name:SetPoint('LEFT', 2, 0)
@@ -83,7 +82,7 @@ local function Style(self, unit)
 	name:SetFont(FONT, 8, 'OUTLINE')
 	name:SetJustifyH('LEFT')
 	name.frequentUpdates = true
-	self:Tag(name, '[darwleader][darwname][( )darwwild]')
+	self:Tag(name, '[darw:leader][darw:name][ >darw:wild]')
 
 	local readycheck = self:CreateTexture(nil, 'OVERLAY')
 	readycheck:SetPoint('RIGHT', self, 'LEFT', -2, 0)
