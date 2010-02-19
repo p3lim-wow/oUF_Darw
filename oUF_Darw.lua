@@ -101,7 +101,9 @@ end
 oUF:RegisterStyle('Darw', Style)
 oUF:SetActiveStyle('Darw')
 
-oUF:SpawnHeader('oUF_Darw', nil, nil, true, true,
+local group = oUF:SpawnHeader('oUF_Darw', nil, nil, true, true)
+group:SetPoint('TOP', Minimap, 'BOTTOM', 0, -15)
+group:SetManyAttributes(
 	'showPlayer', true,
 	'showParty', true,
 	'showRaid', true,
@@ -113,4 +115,4 @@ oUF:SpawnHeader('oUF_Darw', nil, nil, true, true,
 	'unitsPerColumn', 5,
 	'columnSpacing', 81,
 	'columnAnchorPoint', 'TOP'
-):SetPoint('TOP', Minimap, 'BOTTOM', 0, -15)
+)
