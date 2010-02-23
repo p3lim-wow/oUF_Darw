@@ -47,6 +47,10 @@ oUF.Tags['darw:name'] = function(unit, realUnit)
 	return string.format('%s%s|r', Hex(colors[class] or colors['WARRIOR']), UnitName(realUnit or unit))
 end
 
+oUF.Tags['darw:vehicle'] = function(unit, realUnit)
+	return realUnit and '*'
+end
+
 local function Style(self, unit)
 	self:RegisterForClicks('AnyUp')
 	self:SetScript('OnEnter', UnitFrame_OnEnter)
@@ -83,7 +87,7 @@ local function Style(self, unit)
 	name:SetFont(FONT, 8, 'OUTLINE')
 	name:SetJustifyH('LEFT')
 	name.frequentUpdates = true
-	self:Tag(name, '[darw:leader][darw:name][ >darw:wild]')
+	self:Tag(name, '[darw:leader][darw:name][ >darw:vehicle][ >darw:wild]')
 
 	local readycheck = self:CreateTexture(nil, 'OVERLAY')
 	readycheck:SetPoint('RIGHT', self, 'LEFT', -2, 0)
